@@ -15,16 +15,15 @@ public class BudgetAppApplication {
 		SpringApplication.run(BudgetAppApplication.class, args);
 	}
 
+	@Autowired
 	private BudgetService  budgetService;
 
-
-	public void init() {
-		Budgets budget = new Budgets();
-		budget.Income(2000);
-		budget.fixedExpense(1000);
-		budget.savings(400);
-		budget.variable(390);
-		budgetService.my_Budget(budget);
-	}
+	@PostConstruct
+	Budget budget = new Budget();
+	budget.setIncome(2000);
+	budget.setFixedExpenses(1000);
+	budget.setSavings(400);
+	budget.setVariableExpenses(390);
+	budgetService.createBudget(budget);
 
 }
